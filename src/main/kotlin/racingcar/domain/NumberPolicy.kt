@@ -1,5 +1,5 @@
 package racingcar.domain
 
-interface NumberGenerator {
+interface NumberPolicy {
     fun generate(): Int
 }

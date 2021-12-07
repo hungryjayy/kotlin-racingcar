@@ -1,8 +1,8 @@
 package racingcar.domain
 
-data class Trial(val trialNumber: Int) {
+data class Trial(val trialCount: Int) {
     init {
-        require(trialNumber > TRIAL_LOWER_BOUND) { TRIAL_NUMBER_ERROR_MESSAGE }
+        require(trialCount > TRIAL_LOWER_BOUND) { TRIAL_NUMBER_ERROR_MESSAGE }
     }
 
     companion object {

@@ -2,7 +2,7 @@ package racingcar.domain
 
 import java.util.Random
 
-class RandomNumber : NumberGenerator {
+class RandomNumberPolicy : NumberPolicy {
     override fun generate(): Int = Random().nextInt(RANDOM_UPPER_BOUND)
 
     companion object {

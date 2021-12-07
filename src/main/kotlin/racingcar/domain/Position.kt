@@ -1,5 +1,5 @@
 package racingcar.domain
 
-data class Position(val position: Int = 0) {
-    fun accelerate() = copy(position = position + 1)
+data class Position(var position: Int = 0) {
+    fun accelerate() = this.position++
 }

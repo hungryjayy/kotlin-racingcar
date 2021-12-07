@@ -4,40 +4,33 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import racingcar.domain.Car
+import racingcar.domain.Car.Companion.MOVABLE_LOWER_BOUND
+import racingcar.domain.Car.Companion.NAME_LENGTH_ERROR_MESSAGE
+import racingcar.domain.Position
 
 class CarTest {
-
-    private val car = Car("car")
-
     @Test
     fun `Should move car when random value is threshold or over`() {
-        val prevPosition = car.position
-        car.move(4)
-        assertThat(car.position).isNotEqualTo(prevPosition)
+        val car = Car("car", Position())
+        val prevPosition = car.position.position
+
+        car.move(MOVABLE_LOWER_BOUND)
+
+        assertThat(car.position.position).isNotEqualTo(prevPosition)
     }
 
     @Test
     fun `Should not move car when random value is below threshold`() {
+        val car = Car("car", Position())
         val prevPosition = car.position
-        car.move(3)
+
+        car.move(MOVABLE_LOWER_BOUND - 1)
+
         assertThat(car.position).isEqualTo(prevPosition)
     }
 
     @Test
     fun `Should fail when name length over 5`() {
-        assertThatThrownBy { Car("123456") }
-    }
-
-    @Test
-    fun `Should move each car properly`() {
-        val carA = Car("carA")
-        val carB = Car("carB")
-        val carC = Car("carC")
-        carA.move(4)
-        carA.move(4)
-        carB.move(4)
-        assertThat(carA.position.position).isEqualTo(2)
-        assertThat(carB.position.position).isEqualTo(1)
-        assertThat(carC.position.position).isEqualTo(0)
+        assertThatThrownBy { Car("123456", Position()) }.hasMessage(NAME_LENGTH_ERROR_MESSAGE)
     }
 }

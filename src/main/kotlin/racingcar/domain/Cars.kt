@@ -1,12 +1,12 @@
 package racingcar.domain
 
-class Cars(val cars: List<Car> = listOf()) {
-    val winners: List<Car>
-        get() {
-            val winningPosition = cars.maxByOrNull { it.position.position }!!.position.position
+class Cars(carNames: List<String>) {
+    val cars: List<Car> = carNames.map { Car(it, Position()) }
 
+    val winners: List<Car>
+        get() = cars.maxByOrNull { it.position.position }!!.position.position.let { winningPosition ->
             return cars.filter { it.position.position == winningPosition }
         }
 
-    fun moveCars(numberGenerator: NumberGenerator) = cars.forEach() { it.move(numberGenerator.generate()) }
+    fun moveCars(numberPolicy: NumberPolicy) = cars.forEach { it.move(numberPolicy.generate()) }
 }

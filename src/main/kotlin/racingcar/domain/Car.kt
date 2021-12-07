@@ -1,14 +1,11 @@
 package racingcar.domain
 
-class Car(val name: String, var position: Position = Position()) {
+class Car(val name: String, var position: Position) {
     init {
         require(name.length <= NAME_MAX_LENGTH) { NAME_LENGTH_ERROR_MESSAGE }
     }
 
-    fun move(number: Int) {
-        if (number >= MOVABLE_LOWER_BOUND)
-            position = position.accelerate()
-    }
+    fun move(number: Int) { if (number >= MOVABLE_LOWER_BOUND) position.accelerate() }
 
     companion object {
         const val MOVABLE_LOWER_BOUND = 4

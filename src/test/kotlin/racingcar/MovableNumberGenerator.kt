@@ -1,7 +1,7 @@
 package racingcar
 
-import racingcar.domain.NumberGenerator
+import racingcar.domain.NumberPolicy
 
-class MovableNumberGenerator : NumberGenerator {
+class MovableNumberGenerator : NumberPolicy {
     override fun generate() = 4
 }
